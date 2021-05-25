@@ -1,0 +1,5 @@
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\MainWindow.g.cs
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\Practica_MarkupCompile.cache
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\Practica_MarkupCompile.lref
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\Practica.csprojAssemblyReference.cache
