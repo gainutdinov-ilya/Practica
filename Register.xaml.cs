@@ -37,7 +37,7 @@ namespace Practica
                 MessageBox.Show("Фамилия может иметь длинну от 2 до 32 символов, пробелы недопустимы");
                 return;
             }
-            if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Surname.Text.Length)
+            if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Login.Text.Length)
             {
                 MessageBox.Show("Логин может иметь длинну от 6 до 16 символов, пробелы недопустимы");
                 return;
@@ -50,6 +50,11 @@ namespace Practica
             if (Password.Password != RepeatedPassword.Password)
             {
                 MessageBox.Show("Введёные пароли не совпадают");
+                return;
+            }
+            if (DateOfBirth.SelectedDate == null)
+            {
+                MessageBox.Show("Выберите Дату");
                 return;
             }
             //
