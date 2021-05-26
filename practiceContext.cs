@@ -50,7 +50,7 @@ namespace Practica
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(32);
+                    .HasMaxLength(256);
 
                 entity.Property(e => e.Surname)
                     .IsRequired()

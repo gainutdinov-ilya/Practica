@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace Practica
 {
@@ -58,6 +59,24 @@ namespace Practica
                 return;
             }
             //
+            MessageBox.Show("Соответствует");
+            using (practiceContext db = new practiceContext())
+            {
+                var users = (from User in db.Users where User.Login == $"{Login.Text}" select User).ToList();
+                foreach(User user in users)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует");
+                    return;
+                }
+                var result = (from User in db.Users orderby User.UserId select User.UserId).ToList();
+                int id = Convert.ToInt32(result.Sum()) + 1;
+                MessageBox.Show();
+                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password)).GetHashCode(), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
+                db.Add(register);
+                db.SaveChanges();
+                MessageBox.Show("Пользователь успешно зарегестрирован");
+            }
+            Close();
         }
     }
 }
