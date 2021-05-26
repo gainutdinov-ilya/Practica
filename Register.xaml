@@ -13,7 +13,7 @@
         <Label Content="Имя:" FontSize="20" HorizontalAlignment="Center" Margin="0,50,200,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Surname" HorizontalAlignment="Center" TextWrapping="NoWrap" FontSize="20" Margin="40,105,0,0" Text="" MaxLength="32" VerticalAlignment="Top" Width="180"/>
         <Label Content="Фамилия:" FontSize="20" HorizontalAlignment="Center" Margin="0,100,240,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Login" HorizontalAlignment="Center" TextWrapping="NoWrap" FontSize="20" Margin="40,155,0,0" Text="" MaxLength="32" VerticalAlignment="Top" Width="180"/>
+        <TextBox x:Name="Login" HorizontalAlignment="Center" TextWrapping="NoWrap" FontSize="20" Margin="40,155,0,0" Text="" MaxLength="16" VerticalAlignment="Top" Width="180"/>
         <Label Content="Логин:" FontSize="20" HorizontalAlignment="Center" Margin="0,150,240,0" VerticalAlignment="Top"/>
         <PasswordBox x:Name="Password" HorizontalAlignment="Center" FontSize="20" Margin="40,205,0,0" MaxLength="32" VerticalAlignment="Top" Width="180"/>
         <Label Content="Пароль:" FontSize="20" HorizontalAlignment="Center" Margin="0,200,240,0" VerticalAlignment="Top"/>
