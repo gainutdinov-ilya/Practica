@@ -25,7 +25,7 @@ namespace Practica
             InitializeComponent();
         }
 
-        public void CheckForm(object sender, RoutedEventArgs e)
+        private void CheckForm(object sender, RoutedEventArgs e)
         {
             //Проверка правильности заполнения формы
             if (Name.Text.Length < 2 || Name.Text.Length > 32 || Name.Text.Replace(" ", string.Empty).Length < Name.Text.Length)
@@ -70,13 +70,38 @@ namespace Practica
                 }
                 var result = (from User in db.Users orderby User.UserId select User.UserId).ToList();
                 int id = Convert.ToInt32(result.Sum()) + 1;
-                MessageBox.Show();
-                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password)).GetHashCode(), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
+                //MessageBox.Show(BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password))));
+                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password))), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
                 db.Add(register);
                 db.SaveChanges();
                 MessageBox.Show("Пользователь успешно зарегестрирован");
             }
             Close();
         }
+
+        private void DeleteUserByLogin(object sender, RoutedEventArgs e)
+        {
+            if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Login.Text.Length)
+            {
+                MessageBox.Show("Логин может иметь длинну от 6 до 16 символов, пробелы недопустимы");
+                return;
+            }
+            using (practiceContext db = new practiceContext())
+            {
+                var users = (from User in db.Users where User.Login == $"{Login.Text}" select User).ToList();
+                foreach(User user in users)
+                {
+                    if(MessageBox.Show($"Удалить пользователя {user.Login}", "Нет", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        db.Remove(user);
+                        db.SaveChanges();
+                        return;
+                    }
+                }
+                MessageBox.Show("Пользователь не найден");
+
+            }
+        }
+
     }
 }

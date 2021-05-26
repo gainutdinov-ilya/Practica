@@ -9,6 +9,7 @@
         Title="Register" Height="600" Width="400">
     <Grid>
         <Button Content="Зарегестрироваться" Width="200" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,80" VerticalAlignment="Bottom" Click="CheckForm"/>
+        <Button Content="Удалить пользователя по логину" Width="350" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,160" VerticalAlignment="Bottom" Click="DeleteUserByLogin"/>
         <TextBox x:Name="Name"  HorizontalAlignment="Center" FontSize="20" Margin="40,55,0,0" TextWrapping="NoWrap" Text="" MaxLength="32" VerticalAlignment="Top" Width="180"/>
         <Label Content="Имя:" FontSize="20" HorizontalAlignment="Center" Margin="0,50,200,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Surname" HorizontalAlignment="Center" TextWrapping="NoWrap" FontSize="20" Margin="40,105,0,0" Text="" MaxLength="32" VerticalAlignment="Top" Width="180"/>
