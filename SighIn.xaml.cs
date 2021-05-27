@@ -10,8 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Text.Json;
+
 
 namespace Practica
 {
@@ -27,15 +28,18 @@ namespace Practica
 
         private void Auth(object sender, RoutedEventArgs e)
         {
+            Button.IsEnabled = false;
             //проверка на правильность формы
             if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Login.Text.Length)
             {
                 MessageBox.Show("Логин может иметь длинну от 6 до 16 символов, пробелы недопустимы");
+                Button.IsEnabled = true;
                 return;
             }
             if (Password.Password.Length < 6 || Password.Password.Length > 32 || Password.Password.Replace(" ", string.Empty).Length < Password.Password.Length)
             {
                 MessageBox.Show("Пароль может иметь длинну от 6 до 16 символов, пробелы недопустимы");
+                Button.IsEnabled = true;
                 return;
             }
             //Выполняем запрос
@@ -44,16 +48,19 @@ namespace Practica
                 User user;
                 try
                 {
-                    user = (from User in db.Users where User.Login == Login.Text && User.Password == Encryption.GetSHA256(Password.Password) select User).Single();
+                    user = db.Users.Where(data => data.Password == Encryption.GetSHA256(Password.Password) && data.Login == Login.Text).FirstOrDefault();
                 }
                 catch(InvalidOperationException)
                 {
                     MessageBox.Show("Неверный логин или пароль");
+                    Button.IsEnabled = true;
                     return;
                 }
                 //записываем данные которое получили в файл
-                string json = JsonSerializer.Serialize(user);
-
+                Files.WriteUser(user);
+                MessageBox.Show("Пользователь авторизован");
+                Close();
+                Button.IsEnabled = true;
             }
         }
     }

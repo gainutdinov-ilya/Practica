@@ -23,6 +23,8 @@ namespace Practica
         public MainWindow()
         {
             InitializeComponent();
+            // проверка авторизации 
+            LoginChecker();
         }
 
         private void CreateRegWindow(object sender, RoutedEventArgs e)
@@ -37,6 +39,19 @@ namespace Practica
             SighIn window = new SighIn();
             window.Owner = this;
             window.ShowDialog();
+            LoginChecker();
         }
+
+        private void LoginChecker()
+        {
+            if (Files.ReadUser() != null)
+            {
+                Profile profile = new Profile();
+                profile.Show();
+                Close();
+                return;
+            }
+            return;
+        } 
     }
 }

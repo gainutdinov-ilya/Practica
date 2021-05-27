@@ -27,20 +27,25 @@ namespace Practica
         public static User ReadUser()
         {
             User user;
-            using (FileStream fs = new FileStream("user.json",FileMode.Open, FileAccess.Read))
-            {
-                Byte[] data = new byte[fs.Length];
-                int dataToRead = (int)fs.Length;
-                int offset = 0;
-                while(dataToRead > 0)
+            try {
+                using (FileStream fs = new FileStream("user.json", FileMode.Open, FileAccess.Read))
                 {
-                    fs.Read(data, offset, dataToRead);
-                    if (dataToRead == 0) break;
-                    offset++;
-                    dataToRead--;
+                    Byte[] data = new byte[fs.Length];
+                    int dataToRead = (int)fs.Length;
+                    int offset = 0;
+                    while (dataToRead > 0)
+                    {
+                        fs.Read(data, offset, dataToRead);
+                        if (dataToRead == 0) break;
+                        offset++;
+                        dataToRead--;
+                    }
+                    user = JsonSerializer.Deserialize<User>(data);
                 }
-                user = JsonSerializer.Deserialize<User>(data);
-                
+            }
+            catch(FileNotFoundException)
+            {
+                return null;
             }
             return user;
         }

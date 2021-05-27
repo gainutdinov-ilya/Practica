@@ -22,6 +22,16 @@ namespace Practica
         public Profile()
         {
             InitializeComponent();
+            if (DataIsActual() == false) Logout();
+        }
+
+        private bool DataIsActual()
+        {
+            using (practiceContext db = new practiceContext)
+            {
+
+            }
+                return true;
         }
     }
 }

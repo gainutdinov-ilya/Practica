@@ -12,6 +12,6 @@
         <TextBox x:Name="Login" HorizontalAlignment="Center" Margin="30,15,0,0" Text="" TextWrapping="NoWrap" MaxLength="32" VerticalAlignment="Top" Width="120" FontSize="20"/>
         <Label Content="Пароль:" HorizontalAlignment="Center" Margin="0,50,170,0" VerticalAlignment="Top" FontSize="20"/>
         <PasswordBox x:Name="Password" HorizontalAlignment="Center" Margin="30,55,0,0" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <Button Content="Войти" Width="300" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center" FontSize="20" Click="Auth"/>
+        <Button x:Name="Button" Content="Войти" Width="300" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center" FontSize="20" Click="Auth"/>
     </Grid>
 </Window>
