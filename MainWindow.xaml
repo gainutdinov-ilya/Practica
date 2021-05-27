@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practica"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="600" Width="400">
     <Grid>
-
+        <Button Content="Регистрация" FontSize="20" Width="200" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Click="CreateRegWindow"/>
+        <Button Content="Авторизация" FontSize="20" Width="200" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="CreateAuthWindow"/>
     </Grid>
 </Window>

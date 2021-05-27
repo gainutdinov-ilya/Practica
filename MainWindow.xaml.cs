@@ -24,5 +24,19 @@ namespace Practica
         {
             InitializeComponent();
         }
+
+        private void CreateRegWindow(object sender, RoutedEventArgs e)
+        {
+            Register window = new Register();
+            window.Owner = this;
+            window.ShowDialog();
+        }
+
+        private void CreateAuthWindow(object sender, RoutedEventArgs e)
+        {
+            SighIn window = new SighIn();
+            window.Owner = this;
+            window.ShowDialog();
+        }
     }
 }
