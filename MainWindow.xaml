@@ -9,6 +9,6 @@
         Title="MainWindow" Height="600" Width="400">
     <Grid>
         <Button Content="Регистрация" FontSize="20" Width="200" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Click="CreateRegWindow"/>
-        <Button Content="Авторизация" FontSize="20" Width="200" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Button Content="Авторизация" FontSize="20" Width="200" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="CreateAuthWindow"/>
     </Grid>
 </Window>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\Илья\Documents\GitHub\Practica\App.xaml
-31709704981
+4-2024996397
 
-9-1137412399
+10-1128695504
 207-203398740
-MainWindow.xaml;Profile.xaml;Register.xaml;
+MainWindow.xaml;Profile.xaml;Register.xaml;SighIn.xaml;
 
-True
+False
 
