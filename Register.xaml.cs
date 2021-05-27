@@ -58,20 +58,21 @@ namespace Practica
                 MessageBox.Show("Выберите Дату");
                 return;
             }
-            //
-            MessageBox.Show("Соответствует");
+            //проверка и регистрация пользователя
             using (practiceContext db = new practiceContext())
-            {
+            {   //проверяем логин
                 var users = (from User in db.Users where User.Login == $"{Login.Text}" select User).ToList();
                 foreach(User user in users)
                 {
                     MessageBox.Show("Пользователь с таким логином уже существует");
                     return;
                 }
+                //Получаем последний ID
                 var result = (from User in db.Users orderby User.UserId select User.UserId).ToList();
                 int id = Convert.ToInt32(result.Sum()) + 1;
-                //MessageBox.Show(BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password))));
+                //заполняем поля регистрации
                 User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password))), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
+                //Сохраняем изменения
                 db.Add(register);
                 db.SaveChanges();
                 MessageBox.Show("Пользователь успешно зарегестрирован");
@@ -80,24 +81,28 @@ namespace Practica
         }
 
         private void DeleteUserByLogin(object sender, RoutedEventArgs e)
-        {
+        {   //проверяем поле на заполнение
             if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Login.Text.Length)
             {
                 MessageBox.Show("Логин может иметь длинну от 6 до 16 символов, пробелы недопустимы");
                 return;
-            }
+            }//получаем пользователя с логином 
             using (practiceContext db = new practiceContext())
             {
                 var users = (from User in db.Users where User.Login == $"{Login.Text}" select User).ToList();
                 foreach(User user in users)
                 {
+                    //спрашиваем прежде чем удалять
                     if(MessageBox.Show($"Удалить пользователя {user.Login}", "Нет", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
+                        //Удаляем и сохраняем изменения
                         db.Remove(user);
                         db.SaveChanges();
                         return;
                     }
+                    return;
                 }
+                //Выводим сообще если пользователь не был найден
                 MessageBox.Show("Пользователь не найден");
 
             }

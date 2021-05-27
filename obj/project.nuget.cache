@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FSn7ZFHjfg7Bsu22tWOZ+9LcnYvUHMEWo9EJOPDmP4uIo8tveF8re4Ch9GK7uhJWrZuajlqchAugZJl+cv2Haw==",
+  "dgSpecHash": "5eNoEEcEvFTgFfvQhJ3odzA/0LtZXqHAEf/bL8QfzvIjG0YB2UGlNgG7wVm2V9SiHO1EQsSayGhBzdLRaO0pfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Илья\\source\\repos\\Practica\\Practica\\Practica.csproj",
+  "projectFilePath": "C:\\Users\\Илья\\Documents\\GitHub\\Practica\\Practica.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Илья\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Илья\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
