@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.Json;
 
 namespace Practica
 {
@@ -40,15 +41,19 @@ namespace Practica
             //Выполняем запрос
             using (practiceContext db = new practiceContext())
             {
+                User user;
                 try
                 {
-                    var user = (from User in db.Users where User.Login == Login.Text && User.Password == Encryption.GetSHA256(Password.Password) select User).Single();
+                    user = (from User in db.Users where User.Login == Login.Text && User.Password == Encryption.GetSHA256(Password.Password) select User).Single();
                 }
                 catch(InvalidOperationException)
                 {
                     MessageBox.Show("Неверный логин или пароль");
                     return;
                 }
+                //записываем данные которое получили в файл
+                string json = JsonSerializer.Serialize(user);
+
             }
         }
     }
