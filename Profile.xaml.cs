@@ -27,11 +27,22 @@ namespace Practica
 
         private bool DataIsActual()
         {
-            using (practiceContext db = new practiceContext)
+            using (practiceContext db = new practiceContext())
             {
+                User user = Files.ReadUser();
+                MessageBox.Show(((User)db.Users.Where(data => data.Login == user.Login && data.Password == user.Password).FirstOrDefault() == user).ToString());
+                if (db.Users.Where(data => data.Login == user.Login && data.Password == user.Password).FirstOrDefault() == user) return true;
 
             }
-                return true;
+            return false;
+        }
+
+        private void Logout()
+        {
+            Files.WriteUser(null);
+            MainWindow window = new MainWindow();
+            window.Show();
+            Close();
         }
     }
 }

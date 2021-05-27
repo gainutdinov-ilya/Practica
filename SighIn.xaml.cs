@@ -49,6 +49,10 @@ namespace Practica
                 try
                 {
                     user = db.Users.Where(data => data.Password == Encryption.GetSHA256(Password.Password) && data.Login == Login.Text).FirstOrDefault();
+                    if(user == null)
+                    {
+                        throw new InvalidOperationException();
+                    }
                 }
                 catch(InvalidOperationException)
                 {

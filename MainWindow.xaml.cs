@@ -39,7 +39,6 @@ namespace Practica
             SighIn window = new SighIn();
             window.Owner = this;
             window.ShowDialog();
-            LoginChecker();
         }
 
         private void LoginChecker()

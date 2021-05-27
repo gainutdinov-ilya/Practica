@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Threading;
 
 //файл для хранения функций, использующихся во любых файлах программы 
 namespace Practica
@@ -26,7 +27,8 @@ namespace Practica
 
         public static User ReadUser()
         {
-            User user;
+
+            User user = null;
             try {
                 using (FileStream fs = new FileStream("user.json", FileMode.Open, FileAccess.Read))
                 {
@@ -45,7 +47,12 @@ namespace Practica
             }
             catch(FileNotFoundException)
             {
-                return null;
+                return user;
+            }
+            catch (IOException)
+            {
+                Thread.Sleep(2000);
+                return ReadUser();   
             }
             return user;
         }
