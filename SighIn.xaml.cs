@@ -23,5 +23,33 @@ namespace Practica
         {
             InitializeComponent();
         }
+
+        private void Auth(object sender, RoutedEventArgs e)
+        {
+            //проверка на правильность формы
+            if (Login.Text.Length < 6 || Login.Text.Length > 16 || Login.Text.Replace(" ", string.Empty).Length < Login.Text.Length)
+            {
+                MessageBox.Show("Логин может иметь длинну от 6 до 16 символов, пробелы недопустимы");
+                return;
+            }
+            if (Password.Password.Length < 6 || Password.Password.Length > 32 || Password.Password.Replace(" ", string.Empty).Length < Password.Password.Length)
+            {
+                MessageBox.Show("Пароль может иметь длинну от 6 до 16 символов, пробелы недопустимы");
+                return;
+            }
+            //Выполняем запрос
+            using (practiceContext db = new practiceContext())
+            {
+                try
+                {
+                    var user = (from User in db.Users where User.Login == Login.Text && User.Password == Encryption.GetSHA256(Password.Password) select User).Single();
+                }
+                catch(InvalidOperationException)
+                {
+                    MessageBox.Show("Неверный логин или пароль");
+                    return;
+                }
+            }
+        }
     }
 }

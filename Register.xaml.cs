@@ -68,10 +68,17 @@ namespace Practica
                     return;
                 }
                 //Получаем последний ID
-                var result = (from User in db.Users orderby User.UserId select User.UserId).ToList();
-                int id = Convert.ToInt32(result.Sum()) + 1;
+                int id;
+                try
+                {
+                    id = (from User in db.Users orderby User.UserId select User.UserId).Single<int>() + 1;
+                }
+                catch (InvalidOperationException)
+                {
+                    id = 1;
+                }
                 //заполняем поля регистрации
-                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.Default.GetBytes(Password.Password))), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
+                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = Security.GetSHA256(Password.Password), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
                 //Сохраняем изменения
                 db.Add(register);
                 db.SaveChanges();
@@ -89,24 +96,23 @@ namespace Practica
             }//получаем пользователя с логином 
             using (practiceContext db = new practiceContext())
             {
-                var users = (from User in db.Users where User.Login == $"{Login.Text}" select User).ToList();
-                foreach(User user in users)
+                User user;
+                try
                 {
-                    //спрашиваем прежде чем удалять
-                    if(MessageBox.Show($"Удалить пользователя {user.Login}", "Нет", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {
-                        //Удаляем и сохраняем изменения
-                        db.Remove(user);
-                        db.SaveChanges();
+                    user = (from User in db.Users where User.Login == $"{Login.Text}" select User).Single();
+                }catch(InvalidOperationException)
+                {
+                        MessageBox.Show("Пользователь не найден");
                         return;
-                    }
-                    return;
                 }
-                //Выводим сообще если пользователь не был найден
-                MessageBox.Show("Пользователь не найден");
-
+                //спрашиваем прежде чем удалять
+                if(MessageBox.Show($"Удалить пользователя {user.Login}", "Нет", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    //Удаляем и сохраняем изменения
+                    db.Remove(user);
+                    db.SaveChanges();
+                }
             }
         }
-
     }
 }

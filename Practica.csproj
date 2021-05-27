@@ -15,4 +15,10 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Functions.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+  </ItemGroup>
+
 </Project>
