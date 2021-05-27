@@ -78,7 +78,7 @@ namespace Practica
                     id = 1;
                 }
                 //заполняем поля регистрации
-                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = Security.GetSHA256(Password.Password), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
+                User register = new User { UserId = id, Name = Name.Text, Surname = Surname.Text, Login = Login.Text, DateOfBirth = DateOfBirth.SelectedDate.Value, Password = Encryption.GetSHA256(Password.Password), BanAuth = DateTime.Now, IsAdmin = false, LastLogin = DateTime.Now };
                 //Сохраняем изменения
                 db.Add(register);
                 db.SaveChanges();
