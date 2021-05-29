@@ -48,9 +48,7 @@ namespace Practica
                 Profile profile = new Profile();
                 profile.Show();
                 Close();
-                return;
             }
-            return;
         } 
     }
 }

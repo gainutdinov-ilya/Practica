@@ -86,3 +86,5 @@ C:\Users\Илья\Documents\GitHub\Practica\obj\Debug\net5.0-windows\Practica.pd
 C:\Users\Илья\Documents\GitHub\Practica\obj\Debug\net5.0-windows\Practica.genruntimeconfig.cache
 C:\Users\Илья\Documents\GitHub\Practica\obj\Debug\net5.0-windows\SighIn.g.cs
 C:\Users\Илья\Documents\GitHub\Practica\obj\Debug\net5.0-windows\SighIn.baml
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\Profile.g.cs
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\SighIn.g.cs

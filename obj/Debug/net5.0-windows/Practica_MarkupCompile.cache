@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Илья\Documents\GitHub\Practica\obj\Debug\net5.0-windows\
+C:\Users\Илья\source\repos\Practica\Practica\obj\Debug\net5.0-windows\
 Practica
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Илья\Documents\GitHub\Practica\App.xaml
+C:\Users\Илья\source\repos\Practica\Practica\App.xaml
 4-2024996397
 
-9-1388542341
-207-203398740
+7-620747757
+207750420897
 MainWindow.xaml;Profile.xaml;Register.xaml;SighIn.xaml;
 
-False
+True
 

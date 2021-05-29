@@ -8,6 +8,11 @@ using System.Threading;
 //файл для хранения функций, использующихся во любых файлах программы 
 namespace Practica
 {
+    class Auntification
+    {
+
+    }
+
     class Encryption { 
         public static string GetSHA256(string input)
         {
